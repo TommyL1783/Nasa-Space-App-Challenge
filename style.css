@@ -51,20 +51,20 @@ header {
   border: 1px solid #ccc;
   border-top: none;
 }
+
 #container {
   display:grid;
   width: 1200px;
   height: 500px;
   place-items: center;
-  border: 2px dashed black;
-   background-size: 10px 10px;
+  border: 2px, solid black;
+  background-color: white;
+  background-size: 25px 25px;
   background-image: 
-    linear-gradient(to right, #686767 1px, transparent 1px),
-    linear-gradient(to bottom, #686767 1px, transparent 1px);
+    linear-gradient(to right, #b6b1b1 1px, transparent 1px),
+    linear-gradient(to bottom, #b6b1b1 1px, transparent 1px);
   position: relative;
-  background: white;
 
-  
 
 }
 
@@ -81,5 +81,4 @@ header {
     position: absolute;
     cursor: move;
     user-select: none;
-    box-sizing: border-box;
 }

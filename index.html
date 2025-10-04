@@ -36,6 +36,7 @@
     <button onclick="createRoom('Food Prep')">Food Prep</button>
     <button onclick="createRoom('Food Storage')">Food Storage</button>
     <button onclick="createRoom('Bathroom')">Bathroom</button>
+    <button onclick="createRoom('Exercise Space')">Exercise Space</button>
    </div>
 
     <div id="Power" class="tabcontent">
@@ -85,7 +86,8 @@ function createRoom(label = 'Room') {
 /* Make Rooms Draggable*/
 function makeDraggable(el) {
   let offsetX, offsetY;
-  const gridSize = 10;
+  /* Grid */
+  const gridSize = 25;
 
   el.addEventListener('mousedown', (e) => {
     offsetX = e.clientX - el.offsetLeft;
