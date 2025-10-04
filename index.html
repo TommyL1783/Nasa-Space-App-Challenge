@@ -4,9 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Your Home in Space: Habitat layout Creator</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="Room example" draggable="true" ondragstart="DragEvent"></div>
-    <div class="drop-zone" ondragover="event.preventDefault()"></div>
+    <header>
+        <!-- Title -->
+        <h1>Your Home in Space: Habitat layout Creator</h1>
+    </header>
+    <!-- This will hold the rooms -->
+   <div id = "container"></div>
+
+   <!-- This is the tab to choose from different types of room -->
+   <div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Tech Rooms')">Tech Rooms</button>
+    <button class="tablinks" onclick="openTab(event, 'Habitation and Living')">Habitation and Living</button>
+    <button class="tablinks" onclick="openTab(event, 'Objects')">Objects</button>
+   </div>
+
+   <!-- Indivual tabs -->
+   <div id="Tech Rooms" class="tabcontent">
+    <h2>Tech Rooms</h2>
+   </div>
+
+   <div id="Habitation and Living" class="tabcontent">
+    <h2>Habitation and Living</h2>
+   </div>
+
+   <div id="Objects" class="tabcontent">
+    <h2>Objects</h2>
+   </div>
+
+<!-- Scripts -->
+ <script>
+    
+/* Tabs */
+function openTab(evt, roomName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(roomName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
 </body>
