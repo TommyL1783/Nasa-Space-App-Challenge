@@ -52,23 +52,34 @@ header {
   border-top: none;
 }
 #container {
-  width: 800px;
-  height: 500px;
   display:grid;
+  width: 1200px;
+  height: 500px;
   place-items: center;
-  border: 2px dashed #ccc;
+  border: 2px dashed black;
+   background-size: 10px 10px;
+  background-image: 
+    linear-gradient(to right, #686767 1px, transparent 1px),
+    linear-gradient(to bottom, #686767 1px, transparent 1px);
   position: relative;
   background: white;
+
+  
+
 }
 
 .room{
     width: 200px;
     height: 150px;
-    background-color: darkcyan;
+    background-color: rgb(69, 131, 131);
     color:white;
+    border: 2px solid rgb(52, 100, 100);
+    display: flex;
+    font-weight: bold;
     align-items: center;
     justify-content: center;
     position: absolute;
     cursor: move;
     user-select: none;
+    box-sizing: border-box;
 }

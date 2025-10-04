@@ -19,7 +19,9 @@
    <div class="tab">
     <button class="tablinks" onclick="openTab(event, 'Tech Rooms')">Tech Rooms</button>
     <button class="tablinks" onclick="openTab(event, 'Habitation and Living')">Habitation and Living</button>
+    <button class="tablinks" onclick="openTab(event, 'Power')">Power</button>
     <button class="tablinks" onclick="openTab(event, 'Objects')">Objects</button>
+    
    </div>
 
    <!-- Indivual tabs -->
@@ -30,10 +32,24 @@
 
    <div id="Habitation and Living" class="tabcontent">
     <h2>Habitation and Living</h2>
+    <button onclick="createRoom('Medical room')">Medical room</button>
+    <button onclick="createRoom('Food Prep')">Food Prep</button>
+    <button onclick="createRoom('Food Storage')">Food Storage</button>
+    <button onclick="createRoom('Bathroom')">Bathroom</button>
+   </div>
+
+    <div id="Power" class="tabcontent">
+    <h2>Power</h2>
+    <button onclick="createRoom('Solar Panel')">Solar power</button>
+    <button onclick="createRoom('Nuclear generator')">Nuclearpower</button>
    </div>
 
    <div id="Objects" class="tabcontent">
     <h2>Objects</h2>
+    <button onclick="createRoom('Hatch')">Hatch</button>
+    <button onclick="createRoom('Life Support')">Life Support</button>
+    <button onclick="createRoom('Storage')">Storage</button>
+    <button onclick="createRoom('Astronaut')">Astronaut</button>
    </div>
 
 <!-- Scripts -->
@@ -67,19 +83,30 @@ function createRoom(label = 'Room') {
 }
 
 /* Make Rooms Draggable*/
-function makeDraggable(roomElement) {
+function makeDraggable(el) {
   let offsetX, offsetY;
+  const gridSize = 10;
 
-  roomElement.addEventListener('mousedown', (e) => {
-    offsetX = e.clientX - roomElement.offsetLeft;
-    offsetY = e.clientY - roomElement.offsetTop;
+  el.addEventListener('mousedown', (e) => {
+    offsetX = e.clientX - el.offsetLeft;
+    offsetY = e.clientY - el.offsetTop;
 
     function onMouseMove(e) {
-      roomElement.style.left = `${e.clientX - offsetX}px`;
-      roomElement.style.top = `${e.clientY - offsetY}px`;
+      const moveX = e.clientX - offsetX;
+      const moveY = e.clientY - offsetY;
+
+      el.style.left = `${moveX}px`;
+      el.style.top = `${moveY}px`;
     }
 
-    function onMouseUp() {
+    function onMouseUp(e) {
+      // Snapping to a grid
+      const snappedX = Math.round((e.clientX - offsetX) / gridSize) * gridSize;
+      const snappedY = Math.round((e.clientY - offsetY) / gridSize) * gridSize;
+
+      el.style.left = `${snappedX}px`;
+      el.style.top = `${snappedY}px`;
+
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);
     }
