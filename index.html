@@ -25,6 +25,7 @@
    <!-- Indivual tabs -->
    <div id="Tech Rooms" class="tabcontent">
     <h2>Tech Rooms</h2>
+    <button onclick="createRoom('Communication room')">Communication room</button>
    </div>
 
    <div id="Habitation and Living" class="tabcontent">
@@ -37,7 +38,7 @@
 
 <!-- Scripts -->
  <script>
-    
+
 /* Tabs */
 function openTab(evt, roomName) {
   var i, tabcontent, tablinks;
@@ -51,6 +52,41 @@ function openTab(evt, roomName) {
   }
   document.getElementById(roomName).style.display = "block";
   evt.currentTarget.className += " active";
+}
+/* Create Rooms when pressing the button */
+function createRoom(label = 'Room') {
+  const container = document.getElementById('container');
+  const room = document.createElement('div');
+  
+  room.className = 'room';
+  room.innerText = label;
+
+  container.appendChild(room);
+
+  makeDraggable(room);
+}
+
+/* Make Rooms Draggable*/
+function makeDraggable(roomElement) {
+  let offsetX, offsetY;
+
+  roomElement.addEventListener('mousedown', (e) => {
+    offsetX = e.clientX - roomElement.offsetLeft;
+    offsetY = e.clientY - roomElement.offsetTop;
+
+    function onMouseMove(e) {
+      roomElement.style.left = `${e.clientX - offsetX}px`;
+      roomElement.style.top = `${e.clientY - offsetY}px`;
+    }
+
+    function onMouseUp() {
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    }
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  });
 }
 </script>
 </body>
