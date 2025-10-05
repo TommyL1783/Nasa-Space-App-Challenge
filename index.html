@@ -12,8 +12,24 @@
         <!-- Title -->
         <h1>Your Home in Space: Habitat layout Creator</h1>
     </header>
-    <!-- This will hold the rooms -->
+    <!-- To make them side by side-->
+    <div>
+
+        <!-- This will hold the rooms -->
    <div id = "container"></div>
+
+   <!-- Requirements-->
+   <div id="Requirements">
+    <h1 style = "font-weight: bold;">Requirements</h1>
+    <h2>- Communication room   0/1</h2>
+    <h2>- Food Prep   0/1</h2>
+    <h2>- Medical Room   0/1</h2>
+    <h2>- Bathroom   0/1</h2>
+    <h2>- Sleeping Space   0/1</h2>
+    <h2>- Power Source   0/1</h2>
+    </div>
+
+    </div>
 
    <!-- This is the tab to choose from different types of room -->
    <div class="tab">
@@ -23,6 +39,7 @@
     <button class="tablinks" onclick="openTab(event, 'Objects')">Objects</button>
     
    </div>
+
 
    <!-- Indivual tabs -->
    <div id="Tech Rooms" class="tabcontent">
@@ -37,6 +54,7 @@
     <button onclick="createRoom('Food Storage')">Food Storage</button>
     <button onclick="createRoom('Bathroom')">Bathroom</button>
     <button onclick="createRoom('Exercise Space')">Exercise Space</button>
+    <button onclick="createRoom('Sleeping Space')">Sleeping Space</button>
    </div>
 
     <div id="Power" class="tabcontent">
@@ -74,14 +92,46 @@ function openTab(evt, roomName) {
 function createRoom(label = 'Room') {
   const container = document.getElementById('container');
   const room = document.createElement('div');
-  
   room.className = 'room';
   room.innerText = label;
 
-  container.appendChild(room);
+  // Default sizes
+  let width = 100;
+  let height = 100;
+  // Custom sizes
+  if (label === "Communication room") {
+    width = 150;
+    height = 200;
+  }
 
+  else if (label === "Bathroom") {
+    width = 75;
+    height = 50;
+  }
+  else if (label === "Exercise Space") {
+    width = 100;
+    height = 50;
+  }
+  else if (label === "Sleeping Space") {
+    width = 75;
+    height = 25;
+  }
+  else if (label === "Solar power") {
+    width = 50;
+    height = 100;
+  }
+  else if (label === "Life Support") {
+    width = 60;
+    height = 50;
+  }
+
+  room.style.width = `${width}px`;
+  room.style.height = `${height}px`;
+
+  container.appendChild(room);
   makeDraggable(room);
 }
+
 
 /* Make Rooms Draggable*/
 function makeDraggable(el) {
@@ -116,6 +166,8 @@ function makeDraggable(el) {
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
+
+
 }
 </script>
 </body>
